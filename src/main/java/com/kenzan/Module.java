@@ -6,7 +6,7 @@ import com.kenzan.handler.IFizzBuzzHandler;
 import com.kenzan.service.FizzBuzzService;
 import com.kenzan.service.IFizzBuzzService;
 
-public class FizzBuzzModule extends AbstractModule {
+public class Module extends AbstractModule {
 
 	@Override
 	protected void configure() {

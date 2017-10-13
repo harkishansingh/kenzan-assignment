@@ -14,8 +14,8 @@ import org.testng.Assert;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.kenzan.FizzBuzzApplication;
-import com.kenzan.FizzBuzzConfiguration;
+import com.kenzan.App;
+import com.kenzan.Config;
 
 import io.dropwizard.testing.ConfigOverride;
 import io.dropwizard.testing.DropwizardTestSupport;
@@ -40,8 +40,8 @@ public abstract class AbstractRestApiTest {
 		return fullPath;
 	}
 
-	protected static final DropwizardTestSupport<FizzBuzzConfiguration> RULE = new DropwizardTestSupport<FizzBuzzConfiguration>(
-			FizzBuzzApplication.class, getConfigFile(),
+	protected static final DropwizardTestSupport<Config> RULE = new DropwizardTestSupport<Config>(
+			App.class, getConfigFile(),
 			ConfigOverride.config("server.applicationConnectors[0].port", "9190"));
 
 	

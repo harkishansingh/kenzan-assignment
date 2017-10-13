@@ -12,31 +12,31 @@ import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
-public class FizzBuzzApplication extends Application<FizzBuzzConfiguration>{
+public class App extends Application<Config>{
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(FizzBuzzApplication.class);
-	private GuiceBundle<FizzBuzzConfiguration> guiceBundle;
+	private final static Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private GuiceBundle<Config> guiceBundle;
 	
 	@Override
-	public void initialize(Bootstrap<FizzBuzzConfiguration> bootstrap) {
+	public void initialize(Bootstrap<Config> bootstrap) {
 		// guice
-		this.guiceBundle = GuiceBundle.<FizzBuzzConfiguration> newBuilder()
+		this.guiceBundle = GuiceBundle.<Config> newBuilder()
 				.enableAutoConfig(getClass().getPackage().getName())
 				// Main Module
-				.addModule(new FizzBuzzModule())
+				.addModule(new Module())
 				// conf
-				.setConfigClass(FizzBuzzConfiguration.class).build();
+				.setConfigClass(Config.class).build();
 		bootstrap.addBundle(this.guiceBundle);
-		bootstrap.addBundle(new SwaggerBundle<FizzBuzzConfiguration>() {
+		bootstrap.addBundle(new SwaggerBundle<Config>() {
 			@Override
-			protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(FizzBuzzConfiguration configuration) {
+			protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(Config configuration) {
 				return configuration.getSwaggerConfig();
 			}
 		});
 	}
 
 	@Override
-	public void run(FizzBuzzConfiguration configuration, Environment environment) throws Exception {
+	public void run(Config configuration, Environment environment) throws Exception {
 		environment.jersey()
 				.register(new LoggingFilter(java.util.logging.Logger.getLogger(LoggingFilter.class.getName()), true));
 
@@ -45,7 +45,7 @@ public class FizzBuzzApplication extends Application<FizzBuzzConfiguration>{
 	}
 
 	public static void main(String[] args) throws Exception {
-		new FizzBuzzApplication().run(args);
+		new App().run(args);
 	}
 
 }
