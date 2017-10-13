@@ -1,0 +1,26 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9190
+      
+
+## logging
+logging:
+  # Logger-specific levels.
+  level: INFO
+  loggers:
+    com.xebia: INFO
+    io.dropwizard: INFO
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+
+# swagger configuration
+swagger:
+  title: SPACESHIP SIMULATOR
+  description: SPACESHIP SIMULATOR API's
+  version: 1.0
+  resourcePackage: com.xebia.resources
+  schemes: ["http"]
