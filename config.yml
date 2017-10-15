@@ -19,7 +19,7 @@ logging:
 
 # swagger configuration
 swagger:
-  title: FIZZBUZZ ASSIGNMENT
+  title: KENZAN ASSIGNMENT
   description: FIZZBUZZ API's
   version: 1.0
   resourcePackage: com.kenzan.controller

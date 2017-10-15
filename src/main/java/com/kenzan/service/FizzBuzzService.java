@@ -15,7 +15,6 @@ public class FizzBuzzService implements IFizzBuzzService {
 
 	@Override
 	public Map<FizzBuzzType, List<Integer>> computeFizzBuzzCombinations(String number) {
-		// TODO Auto-generated method stub
 
 		Stream<FizzBuzz> ints = IntStream.range(1, Integer.parseInt(number) + 1)
 				.mapToObj(d -> new FizzBuzz(d, FizzBuzzType.OTHER));
@@ -23,15 +22,10 @@ public class FizzBuzzService implements IFizzBuzzService {
 		Function<Object, Object> fizzBuzzOverWriter = Utils.overWriter(3, FizzBuzzType.FIZZ)
 				.andThen(Utils.overWriter(5, FizzBuzzType.BUZZ)).andThen(Utils.overWriter(15, FizzBuzzType.FIZZBUZZ));
 
-		// List<Object> fizzBuzz =
-		// ints.map(fizzBuzzOverWriter).collect(Collectors.toList());
 
 		Map<FizzBuzzType, List<Integer>> map = ints.map(fizzBuzzOverWriter).map(d -> (FizzBuzz) d)
 				.filter(d -> !FizzBuzzType.OTHER.equals(d.getType())).collect(Collectors.groupingBy(FizzBuzz::getType,
 						Collectors.mapping(FizzBuzz::getInteger, Collectors.toList())));
-		// fizzBuzz.forEach(d->{ System.out.println(((FizzBuzz)d).getInteger() +
-		// " " + ((FizzBuzz)d).getType().name());});
-		System.out.println(map);
 		return map;
 	}
 

@@ -11,9 +11,9 @@ import com.kenzan.model.FizzBuzzType;
 
 public class Utils {
 
-	public static <T> Function<Object, Object> overWriter(int periodicity, T overWriteValue) {
+	public static <T> Function<Object, Object> overWriter(int periodicity, T type) {
 		return value -> (((FizzBuzz) value).getInteger() % periodicity) == 0
-				? new FizzBuzz(((FizzBuzz) value).getInteger(), (FizzBuzzType) overWriteValue) : (FizzBuzz) value;
+				? new FizzBuzz(((FizzBuzz) value).getInteger(), (FizzBuzzType) type) : (FizzBuzz) value;
 
 	}
 

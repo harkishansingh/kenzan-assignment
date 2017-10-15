@@ -18,7 +18,6 @@ public class FizzBuzzHandler implements IFizzBuzzHandler {
 
 	@Override
 	public JSONObject getFizzBuzzCombinations(String number) {
-		// TODO Auto-generated method stub
 		if (!StringUtils.isNumeric(number)) {
 			throw new NotANumberException();
 		}
